@@ -1,12 +1,41 @@
 cmake_minimum_required(VERSION 3.15)
 project(myapp CXX)
 
+# Find required packages
 find_package(spdlog CONFIG REQUIRED)
+find_package(ZLIB REQUIRED)
 
+# Create compression library
+add_library(compression STATIC
+    src/compression.cpp
+    src/compression.h
+)
+
+target_link_libraries(compression PUBLIC
+    ZLIB::ZLIB
+    spdlog::spdlog
+)
+
+target_include_directories(compression PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+# Main executable
 add_executable(myapp src/main.cpp)
 
-target_link_libraries(myapp PRIVATE spdlog::spdlog)
+target_link_libraries(myapp PRIVATE 
+    compression
+    spdlog::spdlog
+    ZLIB::ZLIB
+)
 
+
+if (NOT BUILD_TESTING STREQUAL OFF)
+    add_subdirectory(tests)
+endif()
+
+
+# Install targets
 install(TARGETS myapp DESTINATION "."
         RUNTIME DESTINATION bin
         ARCHIVE DESTINATION lib
