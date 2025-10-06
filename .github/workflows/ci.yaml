@@ -1,0 +1,73 @@
+name: Build Multi-Platform
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - 'release/*'
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    name: ${{ matrix.os }} - ${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Linux builds
+          - os: Linux
+            arch: x86_64
+            runner: ubuntu-latest
+            conan_arch: x86_64
+          - os: Linux
+            arch: armv8
+            runner: ubuntu-latest
+            conan_arch: armv8
+          # macOS builds
+          - os: macOS
+            arch: x86_64
+            runner: macos-13 # Intel runner
+            conan_arch: x86_64
+          - os: macOS
+            arch: armv8
+            runner: macos-latest # ARM64 runner (M1/M2)
+            conan_arch: armv8
+          # Windows builds
+          - os: Windows
+            arch: x86_64
+            runner: windows-latest
+            conan_arch: x86_64
+          - os: Windows
+            arch: armv8
+            runner: windows-latest
+            conan_arch: armv8
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Conan
+        uses: conan-io/setup-conan@v1
+        with:
+          cache_packages: true
+      - name: Detect Conan profile
+        run: conan profile detect --force
+      - name: Build application
+        run: conan build . --build=missing
+
+# - name: Upload artifacts
+#   uses: actions/upload-artifact@v4
+#   with:
+#     name: myapp-${{ matrix.os }}-${{ matrix.arch }}
+#     path: |
+#       build/Release/myapp*
+#       build/Release/generators/
+#     retention-days: 7
