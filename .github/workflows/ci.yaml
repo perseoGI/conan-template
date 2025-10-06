@@ -70,10 +70,5 @@ jobs:
       - name: Build application
         run: conan build . --build=missing -s compiler.cppstd=17
 
-      - name: Run unit tests (Unix)
-        if: runner.os != 'Windows'
-        run: ctest --test-dir build/Release/tests
-
-      - name: Run unit tests (Windows)
-        if: runner.os == 'Windows'
-        run: ctest --test-dir build/tests/Release
+#      - name: Run unit tests (Done by step above, but manually here for reference)
+#        run: ctest --preset conan-release

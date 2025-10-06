@@ -35,6 +35,7 @@ class myappRecipe(ConanFile):
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
+        cmake.ctest()
 
     def package(self):
         cmake = CMake(self)

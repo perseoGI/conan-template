@@ -15,7 +15,7 @@ A modern C++ project demonstrating cross-platform builds with Conan package mana
 ## 📋 Prerequisites
 
 - **Conan** 2.x
-- **C++17 compatible compiler**:
+- **A C++17 compatible compiler**:
   - GCC 7+
   - Clang 5+
   - MSVC 2017+
@@ -52,10 +52,8 @@ conan build . --build=missing
 
 ### Run Tests
 
-```bash
-# Linux/macOS
-./build/Release/myapp_tests
+If the tests were not skipped during the build step, you can run them with:
 
-# Windows
-.\build\Release\myapp_tests.exe
+```bash
+ctest --preset conan-release
 ```
