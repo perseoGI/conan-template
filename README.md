@@ -1,4 +1,4 @@
-# Conan C++ Project Template
+# C++ Project Template using GTest and Conan package manager
 
 A modern C++ project demonstrating cross-platform builds with Conan package manager, featuring zlib compression utilities and comprehensive testing with Google Test.
 

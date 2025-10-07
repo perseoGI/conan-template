@@ -9,7 +9,6 @@ class myappRecipe(ConanFile):
     package_type = "application"
     license = "MIT"
     settings = "os", "compiler", "build_type", "arch"
-    exports_sources = "CMakeLists.txt", "src/*", "tests/*"
 
     def layout(self):
         cmake_layout(self)
