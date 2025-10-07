@@ -23,15 +23,16 @@ target_include_directories(compression PUBLIC
 # Main executable
 add_executable(myapp src/main.cpp)
 
-target_link_libraries(myapp PRIVATE 
+target_link_libraries(myapp PRIVATE
     compression
     spdlog::spdlog
     ZLIB::ZLIB
 )
 
 
-include(CTest)
-add_subdirectory(tests)
+if (NOT BUILD_TESTING STREQUAL OFF)
+    add_subdirectory(tests)
+endif()
 
 
 # Install targets
