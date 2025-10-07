@@ -68,7 +68,7 @@ jobs:
         run: conan profile detect --force
 
       - name: Build application
-        run: conan build . --build=missing -s compiler.cppstd=17 --lockfile-partial
+        run: conan build . --build=missing -s compiler.cppstd=17
 
 #      - name: Run unit tests (Done by step above, but manually here for reference)
 #        run: conan run "ctest --preset conan-release"

@@ -1,14 +1,12 @@
-if (BUILD_TESTING)
-    find_package(GTest REQUIRED CONFIG)
+find_package(GTest REQUIRED CONFIG)
 
-    add_executable(myapp_tests test_compression.cpp)
+add_executable(myapp_tests test_compression.cpp)
 
-    target_link_libraries(myapp_tests PRIVATE
-        compression
-        GTest::gtest
-        GTest::gtest_main
-    )
+target_link_libraries(myapp_tests PRIVATE
+    compression
+    GTest::gtest
+    GTest::gtest_main
+)
 
-    include(GoogleTest)
-    gtest_discover_tests(myapp_tests)
-endif()
+include(GoogleTest)
+gtest_discover_tests(myapp_tests)

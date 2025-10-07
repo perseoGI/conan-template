@@ -6,7 +6,7 @@ find_package(spdlog CONFIG REQUIRED)
 find_package(ZLIB REQUIRED)
 
 # Create compression library
-add_library(compression STATIC
+add_library(compression
     src/compression.cpp
     src/compression.h
 )
@@ -30,7 +30,8 @@ target_link_libraries(myapp PRIVATE
 )
 
 
-if (NOT BUILD_TESTING STREQUAL OFF)
+include(CTest)
+if (BUILD_TESTING)
     add_subdirectory(tests)
 endif()
 
