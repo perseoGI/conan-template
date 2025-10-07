@@ -1,5 +1,5 @@
+if (BUILD_TESTING)
 find_package(GTest REQUIRED CONFIG)
-enable_testing()
 
 add_executable(myapp_tests test_compression.cpp)
 
@@ -11,3 +11,4 @@ target_link_libraries(myapp_tests PRIVATE
 
 include(GoogleTest)
 gtest_discover_tests(myapp_tests)
+endif()

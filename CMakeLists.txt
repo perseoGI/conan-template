@@ -30,9 +30,8 @@ target_link_libraries(myapp PRIVATE
 )
 
 
-if (NOT BUILD_TESTING STREQUAL OFF)
-    add_subdirectory(tests)
-endif()
+include(CTest)
+add_subdirectory(tests)
 
 
 # Install targets
