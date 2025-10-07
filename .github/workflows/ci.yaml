@@ -16,7 +16,6 @@ concurrency:
 
 jobs:
   build:
-    name: ${{ matrix.os }} - ${{ matrix.arch }}
     runs-on: ${{ matrix.runner }}
     
     strategy:
@@ -24,31 +23,16 @@ jobs:
       matrix:
         include:
           # Linux builds
-          - os: Linux
-            arch: x86_64
-            runner: ubuntu-latest
-            
-          - os: Linux
-            arch: armv8
-            runner: ubuntu-latest
+          - runner: ubuntu-latest
+          - runner: ubuntu-22.04-arm
             
           # macOS builds
-          - os: macOS
-            arch: x86_64
-            runner: macos-13  # Intel runner
-            
-          - os: macOS
-            arch: armv8
-            runner: macos-latest  # ARM64 runner (M1/M2)
+          - runner: macos-13      # Intel runner
+          - runner: macos-latest  # ARM64 runner (M1/M2)
             
           # Windows builds
-          - os: Windows
-            arch: x86_64
-            runner: windows-latest
-            
-          - os: Windows
-            arch: armv8
-            runner: windows-latest
+          - runner: windows-latest
+          - runner: windows-11-arm
 
     steps:
       - name: Checkout repository
