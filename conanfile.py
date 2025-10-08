@@ -3,7 +3,7 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 from conan.tools.build import check_min_cppstd
 
 
-class myappRecipe(ConanFile):
+class MyAppRecipe(ConanFile):
     name = "myapp"
     version = "1.0"
     package_type = "application"

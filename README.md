@@ -1,4 +1,7 @@
-# C++ Project Template using GTest and Conan package manager
+# C++ Project Template using GTest and Conan
+
+[![CI](https://github.com/perseoGI/conan-template/actions/workflows/ci.yaml/badge.svg)](https://github.com/perseoGI/conan-template/actions/workflows/ci.yaml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A modern C++ project demonstrating cross-platform builds with Conan package manager, featuring zlib compression utilities and comprehensive testing with Google Test.
 

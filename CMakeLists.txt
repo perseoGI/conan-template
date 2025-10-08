@@ -34,11 +34,3 @@ include(CTest)
 if (BUILD_TESTING)
     add_subdirectory(tests)
 endif()
-
-
-# Install targets
-install(TARGETS myapp DESTINATION "."
-        RUNTIME DESTINATION bin
-        ARCHIVE DESTINATION lib
-        LIBRARY DESTINATION lib
-        )

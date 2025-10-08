@@ -50,3 +50,4 @@ jobs:
 
       - name: Build application
         run: conan build . --build=missing -s compiler.cppstd=17
+
